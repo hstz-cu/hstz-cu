@@ -1,0 +1,50 @@
+name: Deploy to Ubuntu Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ 18.141.3.169 }}
+          username: ${{ ubuntu }}
+          key: ${{ -----BEGIN RSA PRIVATE KEY-----
+MIIEoQIBAAKCAQEAza20AAUEDcGlfUtRvOGxDJKhwkFIha4xG21bAzldF6YnhcAj
+M6i9iuOcFMvbmry3on/IhxZhlnXukVa+y7KCoJzKA9Gs8GbC1VoJvcwR8ztxt83T
+oRGOSIZlabzadweOjQm2GtFoWiIUIFj+8uPv47hgUFRBJ82/rQXXE1z1WTg2/rc0
+RCRamJPu4WOWdLL2vUEHx+8yH7qqUEbU0D/ZwJH83uamMARZDy4p2hgR6OaTf2sp
+SG1Lkq+VLg3JAUObY72OXDOdc3J6cVJtHj7ISaubDekrVPdTGG5bHpqygOb26uvX
+7f2drohuRGfiF4wFSntxHSKyydpqQ4oAz9txuQIDAQABAoIBAQC+o7eIoR2NxqSm
+is6bXTHm7m6iiDI5PijkPCs0xNHFnstZTKsUMd5lwuyj1gSZ2zv2kayDkbooZO0Y
+p6e3VKGBT3JrscgzF3yVlpwa4PDuW3XfIRd8XrJcBL4xEMwJseZuUccJ+nlXueif
+xv2gkqeCkh4rtryhsTJtpFEi8HG1HBzg1aUK6TNN9YVo/EvBPpP56rvZOurB/jIx
+ODjn/PAVqKml4A87ntydR0I7vaIsbZekGnVCfTSOfwiOVtTHNlSuqDteptXjgnTA
+SA74z0Hd/hhh+2IxohxKg+sHp6+SY5hOZB1sv7J5KZLGUM3FlL4RASQLZ52RF86V
+0eCV4rURAoGBAPG7vgV5AFNtf9HQNhDAgNG1F+fw747+otxFnlJCUNGNzXyic/gY
+cHpabHws7oc37Tcc5NgPJhyC9sat+zEMzHzfAzOGSvHI5Qos2xdJE8lYXdNykmK7
+Q/MgU9QCqAFryd0GTfW0STcQAiIu+zZFyAX+FLZ2QPmU+Megk+TU+FZlAoGBANnR
+ONHfma7ZA3Pkmp/J0ozFG4aTv0WM3dCUxNAdPjK0sUctCZDIYI0LU/oezFrLitB0
+B9bYAli8/wRt+pWAhAhKxuWGlwYfD4aRDduVbeiFcTQwW+c9EowwBMInYw2wIy30
+DmlZrr10zoGFn+Z6Jsy5Ja9PDVigt2ARhchm+r7FAoGAKVzkoO8ZfS0JaA9mkOs/
+n6KLGqcBdshfea13779lMNZAyQjLKzKTXHxIf974Wa7aKkoJZmcBMHPAYjK2/qef
+/eXzGEfsXv7vIhSW0J8ygYtbUqkSH07Hy7xGW8qwkL2u5uEDSf21YXSdyNedKKY8
+GbpmNOp7J7mz8ASsCcXfUHkCf23B/9/BzK9Oq266wy/Bg1dr+3LVAI0LbrqsPICi
+O7VRWAOFrkxGrGBmVOq0mkUmS8y+qzSXpJcSpW6V/K9ZEy8afx8psvBitnAYp+L+
+aWPB2klyFN1w6Oe7SqqLLl63YwLE+H4dsu/E7EpYCzsYUnTW1yZ/rzn5wm2mZsOV
+IMUCgYBSXdLUwrNZiRO9OhSaajLD2OAuhGy1dp5jZYjmp1ZooJWB6oL0Hfp4uU5H
+/M4GGne1tumC6FGpdvK/mZPwk5qy97YcjDzkX1sBSZdovgDs4HiP53/jrGLUGIUE
+Ki+PgUiRbScbOvkSKfVsRX6c7Fa17p1D+XWQuIhOsf4cwuuqow==
+-----END RSA PRIVATE KEY----- }}
+          script: |
+            cd /path/to/app
+            git pull origin main
+            ./deploy.sh  # or docker-compose up -d, etc.
+

@@ -1,0 +1,9 @@
+name: example
+version: 1.0
+description: Sample YAML file
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+
